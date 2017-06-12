@@ -1,2 +1,2 @@
-# acm
+#Advocate Client Management
 Advocate Client Management is the process of maintaining the client’s records like Cases, its associated hearings, personal information, contact details, fees and so on. An advocate could easily retrieve his client’s information and his daily hearings information using this application. This application is to store and maintain the advocate’s client records in one server using Ruby on Rails Framework
