@@ -1,0 +1,109 @@
+<div class="container-fluid">
+<div class="hearings-show">
+
+<div class="row">
+  <div class="col-md-12">
+      <h2><strong>Case : </strong><%= link_to @client_case.case_format %></h2>
+  </div>
+</div>
+
+ <div class="row">
+  <div class="col-md-6">
+  <div class="hearing-details">
+    <div class="row">
+
+      <div class="col-md-6">
+     <h3> Hearings Details </h3>
+      </div>
+      <div class="col-md-6">
+      <%= link_to edit_client_case_hearing_path(@client_case, @hearing), class: "btn btn-info" do %>Edit<% end %> 
+      </div>
+    </div>
+    </div>
+  </div>
+    <div class="col-md-6">
+  <div class="hearing-details">
+    <div class="row">
+      <div class="col-md-6">
+      <h3> Fee Details  </h3>
+      </div>
+      <div class="col-md-6">
+       <%= link_to new_hearing_fee_path(@hearing, @fee), class: "btn btn-primary" do %>
+           <i class="glyphicon glyphicon-plus"> </i> Add New Fee
+        <% end %>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+
+  <table class="table">
+
+  <tbody>
+    <tr>
+      <td><p><strong>Date of hearing:</strong><p></td>
+      <td><p><%= @hearing.date_of_hearing.to_date %></p></td>
+    </tr>
+     <tr>
+      <td><p><strong>Advocate:</strong><p></td>
+      <td><p><%= @hearing.advocate.name%></p></td>
+    </tr>
+     <tr>
+      <td><p><strong>Case status:</strong><p></td>
+      <td><p><%= @hearing.case_status %></p></td>
+    </tr>
+     <tr>
+      <td><p><strong>Case:</strong><p></td>
+      <td><p><%= @hearing.client_case.name %></p></td>
+    </tr>
+     <tr>
+      <td><p><strong>Amount:</strong><p></td>
+      <td><p><%= @hearing.amount %></p></td>
+    </tr>
+  </tbody>
+</table>
+ 
+   
+
+    <%#= link_to 'Edit', edit_client_case_hearing_path(@hearing, @client_case) %> 
+    <%#= link_to 'Back', hearings_path %><br/>
+   
+  </div>
+
+  <div class="col-md-6">
+
+      
+      <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Amount Paid</th>
+          <th>Fee Paid Date</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @hearing.fees.each do |fee| %>
+        <tr>
+          <td>1</th>
+          <td> <%= fee.amount_paid %> </td>
+          <td> <%= fee.fee_paid_date.to_date %> </td>
+          <td> <%= fee.fee_comment %> </td>
+          <td> <%= link_to edit_hearing_fee_path(@hearing, fee), class: "btn btn-info" do %>Edit<% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+</div>
+
+<%#= link_to 'Add Fee', new_hearing_fee_path(@hearing, @fee) %>
+</div>
+</div>
+

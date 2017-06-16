@@ -1,0 +1,158 @@
+<%= form_for([@client, @client_case]) do |f| %>
+  <% if @client_case.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client_case.errors.count, "error") %> prohibited this client_case from being saved:</h2>
+
+      <ul>
+      <% @client_case.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="client-cases-new">
+  <div class="row">
+
+    <div class="col-md-3">
+
+          <%= f.hidden_field :client_id, value: @client.id %>
+
+           <div class="field">
+            <%= f.label :state_id %><br>
+            <%= f.collection_select :state_id, State.all, :id, :name, prompt: "Select State" %>
+           </div>
+
+          <div class="field">
+            <%= f.label :district_id %><br>
+            <%= f.collection_select :district_id, District.all, :id, :name, prompt: "Select District" %>
+          </div>
+
+            <div class="field">
+            <%= f.label :court_complex_id %><br>
+            <%= f.collection_select :court_complex_id, CourtComplex.all, :id, :name , prompt: "Select Court Complex"%>
+          </div>
+
+            <div class="field">
+            <%= f.label :court_hall %><br>
+            <%= f.text_field :court_hall %>
+          </div>
+
+            <div class="field">
+            <%= f.label :case_type_id %><br>
+            <%= f.collection_select :case_type_id, CaseType.all, :id, :name, prompt: "Select Case Type" %>
+
+          </div>
+
+           <div class="field">
+            <%= f.label :case_number %><br>
+            <%= f.text_field :case_number %>
+          </div>
+
+
+    </div>
+
+
+
+
+    <div class="col-md-3">
+
+            <div class="field">
+              <%= f.label :case_year %><br>
+              <%= f.text_field :case_year %>
+            </div>
+
+            <div class="field">
+              <%= f.label :name %><br>
+              <%= f.text_field :name %>
+            </div>
+
+            <div class="field">
+              <%= f.label :advocate_id %><br>
+              <%= f.collection_select :advocate_id, Advocate.all, :id, :name , prompt: "Select Advocate"%>
+            </div>
+
+            <div class="field">
+              <%= f.label :file_no %><br>
+              <%= f.text_field :file_no %>
+            </div>
+
+            <div class="field">
+              <%= f.label :case_status %><br>
+              <%= f.select :case_status, %w{Running Closed NOC} ,prompt: "Select " %>
+            </div>
+
+            <div class="field">
+              <%= f.label :nature_of_case %><br>
+              <%= f.text_field :nature_of_case %>
+            </div>
+
+            </br>
+
+            <div class="actions"> 
+              <%= f.submit class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
+    </div>
+
+  </div>
+
+  
+
+  
+   
+ 
+  
+</div>
+
+<script>
+  
+  var stateHandle = document.getElementById('client_case_state_id');
+  var districtHandle = document.getElementById('client_case_district_id');
+  var courtComplexHandle = document.getElementById('client_case_court_complex_id');
+
+  stateHandle.onchange = function(){
+    districtHandle.innerHTML = "";
+    var request = new XMLHttpRequest();
+    request.open('GET','/states/select_districts.json?state_id=' + stateHandle.value)
+    request.onreadystatechange = function(){
+      if(request.readyState === 4 && request.status === 200){
+        var response = JSON.parse(request.responseText);
+        response.forEach(function(district){
+          var newElement = document.createElement('option');
+          newElement.value = district.id;
+          var newText = document.createTextNode(district.name);
+          newElement.appendChild(newText);
+          districtHandle.appendChild(newElement);
+        });
+      }
+    }
+    request.send();
+  };
+
+  districtHandle.onchange =function(){
+    courtComplexHandle.innerHTML = "";
+    var request = new XMLHttpRequest();
+    request.open('GET','/districts/select_court_complexes.json?district_id=' + districtHandle.value)
+    request.onreadystatechange = function(){
+      if(request.readyState === 4 && request.status === 200){
+        var response =  JSON.parse(request.responseText);
+        response.forEach(function(court_complex){
+          var newElement = document.createElement('option');
+          newElement.value = court_complex.id;
+          var newText = document.createTextNode(court_complex.name);
+          newElement.appendChild(newText);
+          courtComplexHandle.appendChild(newElement);
+
+        });
+      }
+    }
+    request.send();
+  };
+
+
+</script> 
+
+

@@ -1,0 +1,398 @@
+body{
+    background-color: #edf1f5 !important;
+}
+
+ol.breadcrumb{
+    background-color: #fdfdfd;
+}
+
+nav.navbar.navbar-default{
+    padding:5px 0px;
+    background-color: #babcbd;
+    background-image: none;
+}
+
+nav.navbar.navbar-default a.navbar-brand{
+    padding: 10px;
+}
+
+ul.nav.navbar-nav.navbar-right li a{
+    color: #1b1818;
+}
+
+.navbar{
+    margin-bottom: 10px !important;
+}
+
+.breadcrumb{
+    margin-bottom: 10px !important;
+}
+ol.breadcrumb a.btn.btn-warning{
+     padding: 0px 19px;
+}
+
+   
+
+ol.breadcrumb li a{
+    color: #502e2e;
+}
+
+ol.breadcrumb li a:hover{
+    text-decoration: none;
+}
+
+p.notice.notice-msg{
+    color: #0a650a;
+    float: right;
+}
+
+p.alert.alert-msg{
+    color: red;
+}
+
+
+.container-fluid h1{
+    font-size: 20px !important;
+    color: #9a3333;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 5px;
+}
+
+table.table{
+   /* border: 1px solid #c3b2b2;*/
+   background-color: #fff;
+}
+
+table.table th{
+    font-size: 17px;
+    color: #403e3e;
+}
+
+a.btn.btn-primary{
+    float:right;
+}
+
+a.navbar-brand img{
+    width:100px;
+}
+
+nav.navbar.navbar-default{
+     background-color: #8c9faf;
+
+}
+
+.main-heading{
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+.main-heading-body{
+    padding: 10px 20px;
+    background-color: #fff;
+}
+
+ .main-heading-body .btn{
+    padding: 1px 18px;
+}
+
+.table td{
+    padding: 6px !important;
+}
+
+
+/* front page */
+
+.home-page .table>thead>tr>th{
+    font-size: 14px;
+}
+
+
+/* clients index */
+
+.home-page  .table td{
+    text-align:center;
+}
+
+.home-page .table>thead>tr>th {
+    text-align:center;
+}
+
+.today-date{
+    font-size: 29px;
+    color: #265175;
+    font-weight: bolder;
+}
+
+.today-month{
+    font-size: 13px;
+    color: #4b4f50;
+    font-weight: 700;
+}
+
+.today-year{
+    color: #675454;
+    font-weight: 600;
+}
+
+
+
+
+
+ 
+
+
+
+
+
+/* client cases show */
+
+
+.client-cases-show h2{
+    background-color: #bfbfbf;
+    padding: 10px;
+    color: #403f3f;
+    font-size: 22px;
+}
+
+.client-cases-show h4,
+.hearings-show h4{
+    font-size: 20px;
+    font-weight: 600;
+    color: #753d3d;
+}
+
+.client-info{
+    border: 1px solid #c5c3c3;
+    padding: 20px;
+    background-color: #fff;
+}
+
+
+/* clients show */
+
+.clients-show h3{
+    
+    font-size: 23px;
+    font-weight: 500;
+    color: #3e3030;
+}
+
+.clients-show .client-information{
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c5c3c3;
+}
+
+.clients-show .client-information h3{
+    margin:0;
+}
+
+.clients-show .client-information a.btn.btn-info{
+    float:right;
+    width: 80px;
+    height: 25px;
+    padding: 2px;
+}
+
+.clients-show .client-info ul{
+    padding-left: 15px;
+}
+
+.clients-show .client-info ul li{
+    list-style-type: none;
+}
+
+.clients-show .client-info ul li a{
+    color: #232020;
+}
+
+.clients-show .client-info i.fa.fa-gavel{
+    padding-right: 10px;
+    color: #442f2f;
+}
+
+
+/* client cases new */
+
+.client-cases-new {
+    background-color: #fff;
+    padding: 20px;
+}
+
+/* client cases show */
+
+
+.client-cases-show .case-details{
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c5c3c3;
+}
+
+.client-cases-show .case-details h3{
+    margin:0;
+}
+
+.client-cases-show .case-details a.btn.btn-info{
+    float: right;
+}
+
+.client-cases-show .client-cases-show-body{
+    padding: 10px 20px;
+    background-color: #fff;
+}
+
+
+.client-cases-show .client-cases-show-body .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    padding: 5px 6px;
+    font-size: 12px;
+    border-radius: 0px;
+}
+
+/* client case edit */
+
+.client-cases-edit{
+   margin-bottom: 10px;
+    background-color: #fff;
+
+}
+
+.client-cases-edit h1{
+    padding: 10px;
+}
+
+
+
+/* advocates show */
+
+.advocate-info{
+	border: 1px solid #c5c3c3;
+    padding: 20px;
+}
+
+/* cases index */
+
+.cases-index .table th{
+    font-size: 13px;
+}
+
+.cases-index .table td{
+    font-size: 12px;
+}
+
+
+/* hearings show */
+
+.hearings-show .hearing-details{
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c5c3c3;
+}
+
+.hearings-show .hearing-details h3{
+    margin: 0;
+    font-size: 21px;
+}
+
+.hearings-show .hearing-details  a.btn.btn-info{
+    float:right;
+}
+
+.hearings-show .hearing-details .btn{
+    padding: 3px 20px;
+}
+
+.hearings-show h2{
+    background-color: #bfbfbf;
+    padding: 10px;
+    color: #403f3f;
+    font-size: 22px;
+}
+
+
+
+
+
+/* toggle switch */
+
+.home-page .switch {
+     position: relative;
+    display: inline-block;
+    width: 52px;
+    height: 20px;
+}
+
+.home-page .switch input {display:none;}
+
+.home-page .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.home-page .slider:before {
+     position: absolute;
+    content: "";
+    height: 13px;
+    width: 14px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.home-page input:checked + .slider {
+  background-color: #96de68;
+}
+
+.home-page input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.home-page input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.home-page .slider.round {
+  border-radius: 34px;
+}
+
+.home-page .slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

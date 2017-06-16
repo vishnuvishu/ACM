@@ -1,0 +1,97 @@
+
+
+<div class="container-fluid">
+<div class="clients-show">
+
+<div class="row">
+  <div class="col-md-6">
+  <div class="client-information">
+    <div class="row">
+      <div class="col-md-6">
+      <h3>Client Information </h3>
+      </div>
+      <div class="col-md-6">
+      <%= link_to edit_client_path(@client), class: "btn btn-info" do %>Edit<% end %> 
+      </div>
+    </div>
+    </div>
+  </div>
+    <div class="col-md-6">
+  <div class="client-information">
+    <div class="row">
+      <div class="col-md-6">
+      <h3>Cases </h3>
+      </div>
+      <div class="col-md-6">
+       <%= link_to new_client_client_case_path(@client), class: "btn btn-primary" do %>
+           <i class="glyphicon glyphicon-plus"> </i> Add new case
+        <% end %>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+  <div class="row">
+
+      <div class="col-md-6">
+         
+              
+                <table class="table">
+                 
+                  <tbody>
+                    <tr>
+                      <td><p><strong>Name:</strong></p></td>
+                      <td><p><%= @client.name %></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Address:</strong></p></td>
+                      <td><p><%= @client.address %></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Pincode:</strong></p></td>
+                      <td><p><%= @client.pincode %></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Email:</strong></p></td>
+                      <td><p><%= @client.email %></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Primary Mobile:</strong></p></td>
+                      <td><p><%= @client.primary_mobile %></p></td>
+                    </tr>
+                  
+                  </tbody>
+                </table>
+
+            
+            <%#= link_to 'Back', clients_path %>
+         
+      </div>
+
+
+  <div class="col-md-6">
+    <div class="client-info">
+        
+
+        <% @client.client_cases.each do |client_case| %>
+            <ul>
+              <li><i class="fa fa-gavel" aria-hidden="true"></i><%= link_to client_case.case_format, client_client_case_path(@client, client_case) %></li>
+            </ul>
+        <% end %>
+
+
+
+    </div>
+  </div>
+
+ 
+
+
+</div>
+
+
+
+
+</div>
+</div>

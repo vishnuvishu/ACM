@@ -1,0 +1,24 @@
+
+
+<p>
+  <strong>Hearing:</strong>
+  <%= @fee.hearing_id %>
+</p>
+
+<p>
+  <strong>Amount paid:</strong>
+  <%= @fee.amount_paid %>
+</p>
+
+<p>
+  <strong>Fee paid date:</strong>
+  <%= @fee.fee_paid_date %>
+</p>
+
+<p>
+  <strong>Fee comment:</strong>
+  <%= @fee.fee_comment %>
+</p>
+
+<%= link_to 'Edit', edit_fee_path(@fee) %> |
+<%= link_to 'Back', fees_path %>

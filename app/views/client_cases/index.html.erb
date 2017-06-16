@@ -1,0 +1,112 @@
+<div class="container-fluid">
+<div class= "cases-index">
+
+<div class="main-heading">
+    <h1>All Cases</h1>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Client</th>
+      <th>Case number</th>
+      <th>Case type</th>
+      <th>Court hall</th>
+      <th>Court complex</th>
+      <th>Case year</th>
+      <th>Advocate</th>
+      <th>File no</th>
+      <th>State</th>
+      <th>District</th>
+      <th>Case status</th>
+      <th>Nature of case</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @client_cases.each do |client_case| %>
+      <tr>
+        <td><%= client_case.name %></td>
+        <td><%= client_case.client.name %></td>
+        <td><%= client_case.case_number %></td>
+        <td><%= client_case.case_type.try(:name) %></td>
+        <td><%= client_case.court_hall %></td>
+        <td><%= client_case.court_complex.try(:name) %></td>
+        <td><%= client_case.case_year %></td>
+        <td><%= client_case.advocate.try(:name) %></td>
+        <td><%= client_case.file_no %></td>
+        <td><%= client_case.state.try(:name) %></td>
+        <td><%= client_case.district.try(:name) %></td>
+        <td><%= client_case.case_status %></td>
+        <td><%= client_case.nature_of_case %></td>
+        <td><%= link_to client_client_case_path(client_case.client, client_case),class: "btn btn-success" do %> Show <% end %> </td>
+        <td><%= link_to edit_client_client_case_path(client_case.client, client_case), class: "btn btn-info" do %>Edit <% end %></td>
+      <!--   <td><%#= link_to client_case, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>Delete<%# end %></td>  -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+<%#= link_to 'Add a case', new_client_case_path %>
+
+</div>
+</div>
+
+</div>
+
+
+
+<script>
+  
+  var stateHandle = document.getElementById('client_case_state_id');
+  var districtHandle = document.getElementById('client_case_district_id');
+  var courtComplexHandle = document.getElementById('client_case_court_complex_id');
+
+  stateHandle.onchange = function(){
+    districtHandle.innerHTML = "";
+    var request = new XMLHttpRequest();
+    request.open('GET','/states/select_districts.json?state_id=' + stateHandle.value)
+    request.onreadystatechange = function(){
+      if(request.readyState === 4 && request.status === 200){
+        var response = JSON.parse(request.responseText);
+        response.forEach(function(district){
+          var newElement = document.createElement('option');
+          newElement.value = district.id;
+          var newText = document.createTextNode(district.name);
+          newElement.appendChild(newText);
+          districtHandle.appendChild(newElement);
+        });
+      }
+    }
+    request.send();
+  };
+
+  districtHandle.onchange =function(){
+    courtComplexHandle.innerHTML = "";
+    var request = new XMLHttpRequest();
+    request.open('GET','/districts/select_court_complexes.json?district_id=' + districtHandle.value)
+    request.onreadystatechange = function(){
+      if(request.readyState === 4 && request.status === 200){
+        var response =  JSON.parse(request.responseText);
+        response.forEach(function(court_complex){
+          var newElement = document.createElement('option');
+          newElement.value = court_complex.id;
+          var newText = document.createTextNode(court_complex.name);
+          newElement.appendChild(newText);
+          courtComplexHandle.appendChild(newElement);
+
+        });
+      }
+    }
+    request.send();
+  };
+
+
+</script> 
+
+

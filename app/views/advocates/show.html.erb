@@ -1,0 +1,92 @@
+
+
+<div class="container-fluid">
+<div class="clients-show">
+
+<div class="row">
+  <div class="col-md-6">
+  <div class="client-information">
+    <div class="row">
+      <div class="col-md-6">
+      <h3>Advocate Information </h3>
+      </div>
+      <div class="col-md-6">
+      <%= link_to edit_advocate_path(@advocate), class: "btn btn-info" do %>Edit<% end %> 
+      </div>
+    </div>
+    </div>
+  </div>
+    <div class="col-md-6">
+  <div class="client-information">
+    <div class="row">
+      <div class="col-md-6">
+      <h3>Cases </h3>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+  <div class="row">
+
+      <div class="col-md-6">
+         
+              
+                <table class="table">
+                 
+                  <tbody>
+                    <tr>
+                      <td><p><strong>Name:</strong></p></td>
+                      <td><p><%= @advocate.name %></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Email:</strong></p></td>
+                      <td><p><%= @advocate.email %></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Mobile:</strong></p></td>
+                      <td><p><%= @advocate.mobile%></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Roll no:</strong></p></td>
+                      <td><p><%= @advocate.roll_no %></p></td>
+                    </tr>
+                  
+                  </tbody>
+                </table>
+
+            
+            <%#= link_to 'Back', clients_path %>
+         
+      </div>
+
+
+  <div class="col-md-6">
+    <div class="client-info">
+
+
+          <% @advocate.client_cases.each do |client_case| %>
+
+            <ul>
+              <li><i class="fa fa-gavel" aria-hidden="true"></i> <%= link_to link_to client_case.case_format, advocate_client_case_path(@advocate, client_case) %></li>
+            </ul>
+
+          <% end %>
+
+          
+
+
+
+    </div>
+  </div>
+
+ 
+
+
+</div>
+
+
+
+
+</div>
+</div>

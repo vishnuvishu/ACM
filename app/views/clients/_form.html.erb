@@ -1,0 +1,180 @@
+<%= nested_form_for(@client) do |f| %>
+  <% if @client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+
+      <ul>
+      <% @client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class="main-heading-body">
+  <div class="field">
+    <%= f.label :primary_mobile %><br>
+    <%= f.text_field :primary_mobile %>
+
+    <%= f.fields_for :all_mobiles, @all_mobile do |task_form| %>
+      <%= task_form.text_field :mobile %>
+      <%= task_form.link_to_remove "Delete" %>
+    <% end %>
+
+    <p><%= f.link_to_add "Add", :all_mobiles %></p>
+      <span id="primaryMobileError"></span>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+    <span id="clientNameError"></span>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br>
+    <%= f.text_area :address %>
+    <span id="addressError"></span> 
+  </div>
+  <div class="field">
+    <%= f.label :pincode %><br>
+    <%= f.text_field :pincode %>
+  <span id="pincodeError"></span> 
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+   <span id="emailError"></span> 
+  </div>
+  </br>
+    
+  <div class="actions">
+    <%= f.submit "Create New Client" , class: "btn btn-primary",  id: "submit" %>
+  </div>
+<% end %>
+
+
+</div>
+<script>
+
+var primaryMobileHandle = document.getElementById('client_primary_mobile');
+var clientNameHandle = document.getElementById('client_name');
+var addressHandle = document.getElementById('client_address');
+var pincodeHandle = document.getElementById('client_pincode');
+var emailHandle = document.getElementById('client_email');
+var submitHandle = document.getElementById('submit');
+submitHandle.disabled = true;
+ 
+
+var primaryMobileErrorHandle = document.getElementById('primaryMobileError');
+var clientNameErrorHandle = document.getElementById('clientNameError');
+var addressErrorHandle = document.getElementById('addressError');
+var pincodeErrorHandle = document.getElementById('pincodeError');
+var emailErrorHandle = document.getElementById('emailError');
+
+var flag = {
+  primaryMobile: false, 
+  clientName: false, 
+  address: false,
+  pinCode: false,
+  email: false
+}
+
+// submitHandle.disabled = true;
+
+primaryMobileHandle.onblur = function(){
+  if(primaryMobileHandle.value.length == ""){
+    primaryMobileError.innerHTML = "cant be blank";
+  }
+  else if(primaryMobileHandle.value.length != 10){
+    primaryMobileError.innerHTML = "mobile number should be 10 digits";
+  }
+  else{
+    primaryMobileError.innerHTML = "";
+    flag.primaryMobile = true;
+    showSubmitBtn(flag);
+  }
+}
+
+clientNameHandle.onblur = function(){
+  if(clientNameHandle.value.length == ""){
+    clientNameErrorHandle.innerHTML = "cant be blank";
+  }
+  else{
+    clientNameErrorHandle.innerHTML = "";
+    flag.clientName = true;
+    showSubmitBtn(flag);
+  }
+}
+
+addressHandle.onblur = function(){
+  if(addressHandle.value.length == ""){
+    addressErrorHandle.innerHTML = "cant be blank";
+  }
+  else{
+    addressErrorHandle.innerHTML = "";
+    flag.address = true;
+    showSubmitBtn(flag);
+  }
+}
+
+pincodeHandle.onblur = function(){
+  if(pincodeHandle.value.length == ""){
+    pincodeErrorHandle.innerHTML = "cant be blank";
+  }
+  else{
+    pincodeErrorHandle.innerHTML = "";
+    flag.pinCode = true;
+    showSubmitBtn(flag);
+  }
+}
+
+emailHandle.onblur = function(){
+  if(emailHandle.value.length == ""){
+    emailErrorHandle.innerHTML = "cant be blank";
+  }
+  else if(!validateEmail(emailHandle.value)){
+    emailErrorHandle.innerHTML = "invalid email format";
+  }
+  else{
+    //emailErrorHandle.innerHTML = "";
+    checkEmailAvailability(emailHandle.value);
+    flag.email = true;
+    showSubmitBtn(flag);
+  }
+};
+
+
+
+function showSubmitBtn(flag){
+  var innerFlag = 0;
+  for(var key in flag){
+    if(flag[key] == false){
+      innerFlag = false;
+    } else {
+     innerFlag += 1;
+    }
+  }
+  if(innerFlag === 5){
+    submitHandle.disabled = false;
+  }else {
+    submitHandle.disabled = true;
+  }
+}
+
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+function checkEmailAvailability(email){
+  var request = new XMLHttpRequest();
+  request.open('GET', '/clients/check_email.json?email_id=' + email);
+  request.onreadystatechange = function(){
+    if(request.readyState === 4 && request.status === 200){
+      emailErrorHandle.innerHTML = JSON.parse(request.responseText).message;
+    }
+  }
+  request.send();
+}
+
+</script>

@@ -1,0 +1,131 @@
+ <script type="text/javascript">
+   $(document).ready(function(){
+    $("#date_select").change(function(){
+      var date = $("#date_select").val();
+      if (date.trim() != ""){
+      $.get("/home/reload_table", "date="+date)
+
+      }
+    })
+   })
+ </script>
+  <div class="container-fluid">
+
+
+  <div class="row">
+
+  <div class="col-md-6">
+      <span class="today-date"><%= Date.today.strftime("%d") %></span >
+      <span  class="today-month"><%= Date.today.strftime("%B") %></span>
+      <span  class="today-year"><%= Date.today.strftime("%Y") %></span >
+  </div>
+
+   <div class="col-md-3 col-md-offset-1">
+      <%= form_tag("/clients", method: :get) do %>
+          <%= text_field_tag :name %>
+          <%= submit_tag "Search" %>
+      <% end %>
+  </div>
+
+   <div class="col-md-2 ">
+      <%=date_field_tag :date_select, "",class:"pull-right"%>
+   </div>
+
+      
+
+      
+
+      
+
+</div>
+
+
+
+
+
+
+<div class="home-page" id= "reload">
+<table class="table table-bordered">
+
+  <thead>
+    <tr>
+      <th>Previous Advocate</th>
+      <th>Previous Date</th>
+      <th>Advocate Appearing</th>
+      <th>Client Fee Due</th>
+      <th>File No</th>
+      <th>Case Details</th>
+      <th>Current Position Stage</th>
+      <th>Next Stage</th>
+      <th>Case Date</th>
+      <th>Hearing Fee</th>
+      <th>To do list</th> 
+    </tr>
+  </thead>
+
+
+  <tbody>
+            
+
+  <% @hearings.each do |hearing| %>
+      <tr>
+        <td >
+          <%= if hearing.client_case.hearings[-3] != nil
+          hearing.client_case.hearings[-3].try(:advocate).try(:name) 
+          end %>
+        </td>
+
+        <td >
+          <%= if hearing.client_case.hearings[-3] != nil
+          hearing.client_case.hearings[-3].try(:date_of_hearing).strftime("%d-%m-%Y") 
+          end %>
+        </td>
+        <td >
+          <%= hearing.advocate.name %>
+        </td>
+
+        <td>
+          <%= hearing.amount %>
+        </td>
+
+        <td>
+          <%= hearing.client_case.file_no %>
+        </td>
+
+        <td>
+         <%= hearing.client_case.case_format %>
+        </td>
+
+        <td>
+          <%= hearing.case_status %>
+        </td>
+
+        <td>
+          <%= hearing.client_case.hearings.last.case_status %>
+        </td>
+
+        <td>
+          <%= hearing.client_case.hearings.last.date_of_hearing.strftime("%d-%m-%Y") %>
+        </td>
+
+        <td>
+         <%= hearing.amount %>
+        </td>
+
+        <td>
+
+          <label class="switch">
+            <input type="checkbox">
+            <div class="slider round"></div>
+          </label>
+
+        </td>
+  </tr>
+  <% end %>
+  </tbody>
+
+
+</table>
+</div>
+</div>
+

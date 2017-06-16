@@ -1,0 +1,179 @@
+<div class="container-fluid">
+
+<div class="client-cases-show">
+  <div class="row">
+    <div class="col-md-12">
+        <h2><strong>Case : </strong><%= @client_case.case_format %></h2>
+    </div>
+  </div>
+
+  <div class="row">
+  <div class="col-md-6">
+  <div class="case-details">  
+    <div class="row">
+      <div class="col-md-6">
+     <h3> Case Details </h3>
+      </div>
+      <div class="col-md-6">
+      <% if params[:client_id].present? %>
+      <%= link_to edit_client_client_case_path(@client, @client_case), class: "btn btn-info" do %>Edit<% end %> 
+      <% else %>
+      <%= link_to edit_client_client_case_path(@advocate, @client_case), class: "btn btn-info" do %>Edit<% end %> 
+      <% end %>
+      </div>
+    </div>
+    </div>
+  </div>
+    <div class="col-md-6">
+  <div class="case-details">
+    <div class="row">
+      <div class="col-md-6">
+      <h3> Hearings </h3>
+      </div>
+      <div class="col-md-6">
+       <%= link_to new_client_case_hearing_path(@client_case, @hearing), class: "btn btn-primary" do %>
+           <i class="glyphicon glyphicon-plus"> </i> Add New Hearing
+        <% end %>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+
+  
+<table class="table" border="0">
+
+  <tbody>
+    <tr>
+      <td><p><strong>Name:</strong></p></td>
+      <td><p><%= @client_case.name %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>Client:</strong></p></td>
+      <td><p> <%= @client_case.client.name %></p></td>
+    </tr>
+
+     <tr>
+      <td><strong>Case number:</strong></td>
+      <td><p><%= @client_case.case_number %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>Case type:</strong></p></td>
+      <td><p><%= @client_case.case_type.name %></p></td>
+    </tr>
+
+     <tr>
+
+      <td><p><strong>Court hall:</strong></p></td>
+      <td><p><%= @client_case.court_hall %></p></td>
+    </tr>
+
+    <!--  <tr>
+      <td><p><strong>Court complex:</strong></p></td>
+      <td><p><%= @client_case.court_complex.try(:name) %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>Case year:</strong></p></td>
+      <td><p><%= @client_case.case_year %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>Advocate:</strong></p></td>
+      <td><p><%#= @client_case.advocate.name %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>File no:</strong></p></td>
+      <td><p><%= @client_case.file_no %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>State:</strong></p></td>
+      <td><p><%#= @client_case.state.name %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>District:</strong></p></td>
+      <td><p><%= @client_case.district_id %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>Case status:</strong></p></td>
+      <td><p><%= @client_case.case_status %></p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>Nature of case:</strong></p></td>
+      <td><p><%= @client_case.nature_of_case   %></p></td>
+    </tr> -->
+
+
+    <tr>
+        <td><p><strong>Case</strong></p></td>
+        <td><p><%= @client_case.case_format %></p></td>
+    </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+
+  <div class="col-md-6">
+      
+<div class="client-cases-show-body">
+<table class="table">
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Date</th>
+      <th>Advocate</th>
+      <th>Status</th>
+      <th>Action </th>
+    </tr>
+  </thead>
+  <tbody>
+   <% @client_case.hearings.each_with_index do |hearing, index| %>
+    <tr>
+        <td> <%= index + 1 %> </td>
+        <td><%= hearing.date_of_hearing.to_date %></td>
+        <td><%= hearing.advocate.name %></td>
+        <td><%= hearing.case_status %></td>
+        <td><%= link_to client_case_hearing_path(hearing.client_case, hearing), class: "btn btn-success" do %> Show <% end %></td>
+      </tr>  
+   <% end %>
+  </tbody>
+</table>
+</div>
+  </div>
+
+</div>
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%#= link_to 'Edit', edit_client_client_case_path(@client, @client_case) %> 
+<%#= link_to 'Back', client_cases_path %><br/>
+
+<%#= link_to 'Add hearing', new_client_case_hearing_path(@client_case, @hearing) %>
+
+</div>
+</div>
+

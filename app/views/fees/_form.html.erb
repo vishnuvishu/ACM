@@ -1,0 +1,42 @@
+
+<%= form_for([@hearing, @fee]) do |f| %> 
+  <% if @fee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fee.errors.count, "error") %> prohibited this fee from being saved:</h2>
+
+      <ul>
+      <% @fee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= f.hidden_field :hearing_id, value: @hearing.id %>
+
+ <div class="field">
+    <%= f.label :fee_paid_date %><br>
+    <%= f.text_field :fee_paid_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount_paid %><br>
+    <%= f.text_field :amount_paid %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :fee_comment %><br>
+    <%= f.text_field :fee_comment %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+   <script>
+  $( function() {
+    $( "#fee_fee_paid_date" ).datepicker({
+      dateFormat: 'yy-mm-dd'
+    });
+  } );
+  </script>

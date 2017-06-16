@@ -1,0 +1,34 @@
+<%= form_for(@advocate) do |f| %>
+  <% if @advocate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@advocate.errors.count, "error") %> prohibited this advocate from being saved:</h2>
+
+      <ul>
+      <% @advocate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :mobile %><br>
+    <%= f.text_field :mobile %>
+  </div>
+  <div class="field">
+    <%= f.label :roll_no %><br>
+    <%= f.text_field :roll_no %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

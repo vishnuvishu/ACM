@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date_of_hearing: 2017-05-17 10:20:45
+  advocate_id: 1
+  case_status: MyText
+  case_id: 1
+  amount: 1
+
+two:
+  date_of_hearing: 2017-05-17 10:20:45
+  advocate_id: 1
+  case_status: MyText
+  case_id: 1
+  amount: 1
