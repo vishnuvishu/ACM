@@ -25,6 +25,12 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+gem 'capistrano', '~> 3.4'
+gem 'capistrano-bundler', '~> 1.1', '>= 1.1.4'
+gem 'capistrano-rails', '~> 1.1', '>= 1.1.6'
+gem 'capistrano-rbenv', '~> 2.0', '>= 2.0.4'
+gem 'capistrano3-puma'
  
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
